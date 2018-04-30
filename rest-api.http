@@ -1,0 +1,6 @@
+GET {{base}}/ip
+Accept: application/json
+Cache-Control: no-cache
+
+###
+
