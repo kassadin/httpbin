@@ -1,6 +1,35 @@
 GET {{base}}/ip
-Accept: application/json
-Cache-Control: no-cache
 
 ###
+GET {{base}}/uuid
+
+###
+GET {{base}}/user-agent
+
+###
+GET {{base}}/headers
+
+###
+GET {{base}}/get
+
+###
+GET {{base}}/get?id=
+
+###
+GET {{base}}/get?id=1&id=3&name=hehe
+
+#> {%
+#client.test("/get status 200", function() {
+#    client.assert(response.status === 200, response.status + "")
+#});
+#
+#client.test("/get has args", function() {
+#    client.assert(response.body.hasOwnProperty("args"), "" )
+#
+#});
+# %}
+
+
+
+
 
