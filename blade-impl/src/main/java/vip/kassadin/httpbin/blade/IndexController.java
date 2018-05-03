@@ -139,6 +139,12 @@ public class IndexController {
         return parameters;
     }
 
+    @GetRoute("xml")
+    public void xml(Response response) {
+        response.contentType("application/xml; charset=UTF-8");
+        response.render("sample.xml");
+    }
+
 
 
 

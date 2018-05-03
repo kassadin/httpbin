@@ -61,7 +61,7 @@
         <li><a href="{{ url_for('image_webp') }}"><code>/image/webp</code></a> Returns a WEBP image.</li>
         <li><a href="{{ url_for('image_svg') }}"><code>/image/svg</code></a> Returns a SVG image.</li>
         <li><a href="{{ url_for('view_forms_post') }}" ><code>/forms/post</code></a> HTML form that submits to <em>/post</em></li>
-        <li><a href="{{ url_for('xml') }}" ><code>/xml</code></a> Returns some XML</li>
+        <li><a href="/xml" ><code>/xml</code></a> Returns some XML</li>
     </ul>
 
     <h2 id="DESCRIPTION">DESCRIPTION</h2>
