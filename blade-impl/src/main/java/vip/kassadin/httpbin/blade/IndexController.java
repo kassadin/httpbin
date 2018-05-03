@@ -8,6 +8,7 @@ import com.blade.mvc.http.Response;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -145,10 +146,36 @@ public class IndexController {
         response.render("sample.xml");
     }
 
+    @GetRoute("image")
+    public void image(Response response)  throws IOException{
+        // todo: check accept
+        response.contentType("image/png");
+        response.body(Resources.get("images/pig_icon.png"));
+    }
 
+    @GetRoute("image_png")
+    public void image_png(Response response) throws IOException {
+        response.contentType("image/png");
+        response.body(Resources.get("images/pig_icon.png"));
+    }
 
+    @GetRoute("image_jpeg")
+    public void image_jpeg(Response response) throws IOException {
+        response.contentType("image/jpeg");
+        response.body(Resources.get("images/jackal.jpg"));
+    }
 
+    @GetRoute("image_webp")
+    public void image_webp(Response response) throws IOException {
+        response.contentType("image/webp");
+        response.body(Resources.get("images/wolf_1.webp"));
+    }
 
+    @GetRoute("image_svg")
+    public void image_svg(Response response) throws IOException {
+        response.contentType("image/svg+xml");
+        response.body(Resources.get("images/svg_logo.svg"));
+    }
 
     private Map<String, Object> getMap(String[] keys) {
         return getMap(keys, null);
