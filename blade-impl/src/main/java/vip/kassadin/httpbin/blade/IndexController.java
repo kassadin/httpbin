@@ -1,15 +1,14 @@
 package vip.kassadin.httpbin.blade;
 
-import com.blade.mvc.WebContext;
 import com.blade.mvc.annotation.*;
 import com.blade.mvc.http.HttpMethod;
 import com.blade.mvc.http.Request;
 import com.blade.mvc.http.Response;
-import com.google.common.base.Preconditions;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.*;
+
+import static vip.kassadin.httpbin.blade.Helper.*;
 
 /**
  * @author kassadin
@@ -86,14 +85,14 @@ public class IndexController {
     }
 
     @GetRoute("decode_base64/:value")
-    public void  decodeBase64(@PathParam String value, Response response) {
+    public void decodeBase64(@PathParam String value, Response response) {
         Objects.requireNonNull(value);
         String origin = new String(Base64.getDecoder().decode(value));
         response.text(origin);
     }
 
     @GetRoute("encoding")
-    public String  encoding( ) {
+    public String encoding() {
         return "UTF-8-demo";
     }
 
@@ -111,14 +110,13 @@ public class IndexController {
         response.text("Not implemented");
     }
 
-
     @GetRoute("brotli")
     public void brotli(Response response) {
         response.text("Not implemented");
     }
 
     @GetRoute("status/:status")
-    public void status(@PathParam(defaultValue = "200") int status ,Response response) {
+    public void status(@PathParam(defaultValue = "200") int status, Response response) {
         response.status(status);
     }
 
@@ -147,7 +145,7 @@ public class IndexController {
     }
 
     @GetRoute("image")
-    public void image(Response response)  throws IOException{
+    public void image(Response response) throws IOException {
         // todo: check accept
         response.contentType("image/png");
         response.body(Resources.get("images/pig_icon.png"));
@@ -177,59 +175,4 @@ public class IndexController {
         response.body(Resources.get("images/svg_logo.svg"));
     }
 
-    private Map<String, Object> getMap(String[] keys) {
-        return getMap(keys, null);
-    }
-
-    private Map<String, Object> getMap(String[] keys, @Nullable Map<String, Object> extras) {
-        String[] _keys = {"url", "args", "form", "data", "origin", "headers", "files", "json", "method"};
-
-        Preconditions.checkArgument(Arrays.asList(_keys).containsAll(Arrays.asList(keys)));
-
-        Request request = WebContext.request();
-
-        Map<String, Object> _map = new HashMap<>();
-        _map.put("url", getUrl(request));
-        _map.put("args", semiflatten(request.parameters()));
-        _map.put("form", request.parameters());
-        _map.put("data", request.parameters());
-        _map.put("origin", request.address());
-        _map.put("headers", request.headers());
-        _map.put("json", request.parameters());
-        _map.put("method", request.method());
-
-        Map<String, Object> outMap = new HashMap<>();
-        for (String key : keys) {
-            outMap.put(key, _map.get(key));
-        }
-
-        if (extras != null && extras.size() > 0) {
-            outMap.putAll(extras);
-        }
-
-        return outMap;
-    }
-
-    private String getUrl(Request request) {
-        String scheme = request.isSecure() ? "https" : "http";
-        String host = request.host();
-        String path = request.url();
-        return String.format("%s://%s/%s", scheme, host, path);
-    }
-
-    private Map<String, Object> semiflatten(Map<String, List<String>> params) {
-        Map<String, Object> outMpas = new HashMap<>();
-
-        List<String> value;
-        for (String key : params.keySet()) {
-            value = params.get(key);
-            if (value.size() == 1) {
-                outMpas.put(key, value.get(0));
-            } else {
-                outMpas.put(key, value);
-            }
-        }
-
-        return outMpas;
-    }
 }
