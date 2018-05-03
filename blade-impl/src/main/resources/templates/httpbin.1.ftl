@@ -24,7 +24,7 @@
         <li><a href="{{ url_for('view_anything') }}" ><code>/anything</code></a> Returns request data, including method used.</li>
         <li><code>/anything/:anything</code> Returns request data, including the URL.</li>
         <li><a href="/decode_base64/aGVsbG8gd29ybGQNCg=="><code>/base64/:value</code></a> Decodes base64url-encoded string.</li>
-        <li><a href="{{ url_for('encoding') }}"><code>/encoding/utf8</code></a> Returns page containing UTF-8 data.</li>
+        <li><a href="/encoding"><code>/encoding/utf8</code></a> Returns page containing UTF-8 data.</li>
         <li><a href="{{ url_for('view_gzip_encoded_content') }}" ><code>/gzip</code></a> Returns gzip-encoded data.</li>
         <li><a href="{{ url_for('view_deflate_encoded_content') }}" ><code>/deflate</code></a> Returns deflate-encoded data.</li>
         <li><a href="{{ url_for('view_brotli_encoded_content') }}" ><code>/brotli</code></a> Returns brotli-encoded data.</li>

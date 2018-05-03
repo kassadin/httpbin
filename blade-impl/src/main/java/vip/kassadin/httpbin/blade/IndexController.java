@@ -90,6 +90,11 @@ public class IndexController {
         response.text(origin);
     }
 
+    @GetRoute("encoding")
+    public String  encoding( ) {
+        return "UTF-8-demo";
+    }
+
     private Map<String, Object> getMap(String[] keys) {
         String[] _keys = {"url", "args", "form", "data", "origin", "headers", "files", "json", "method"};
 
