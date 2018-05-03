@@ -29,7 +29,7 @@
         <li><a href="/deflate" ><code>/deflate</code></a> Returns deflate-encoded data.</li>
         <li><a href="/brotli" ><code>/brotli</code></a> Returns brotli-encoded data.</li>
         <li><a href="/status/418"><code>/status/:code</code></a> Returns given HTTP Status code.</li>
-        <li><a href="{{ url_for('response_headers', **{'Content-Type': 'text/plain; charset=UTF-8', 'Server': 'httpbin'}) }}"><code>/response-headers?key=val</code></a> Returns given response headers.</li>
+        <li><a href="/response-headers?Content-Type=text%2Fplain%3B+charset%3DUTF-8&Server=httpbin"><code>/response-headers?key=val</code></a> Returns given response headers.</li>
         <li><a href="{{ url_for('redirect_n_times', n=6) }}"><code>/redirect/:n</code></a> 302 Redirects <em>n</em> times.</li>
         <li><a href="{{ url_for('redirect_to', url='http://example.com/') }}"><code>/redirect-to?url=foo</code></a> 302 Redirects to the <em>foo</em> URL.</li>
         <li><a href="{{ url_for('redirect_to', url='http://example.com/', status_code=307) }}"><code>/redirect-to?url=foo&status_code=307</code></a> 307 Redirects to the <em>foo</em> URL.</li>

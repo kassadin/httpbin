@@ -121,6 +121,23 @@ public class IndexController {
         response.status(status);
     }
 
+    @GetRoute("response-headers")
+    @JSON
+    public Map<String, List<String>> responseHeaders(Request request, Response response) {
+        Map<String, List<String>> parameters = request.parameters();
+        for (String key : parameters.keySet()) {
+
+            List<String> strings = parameters.get(key);
+            if (strings == null || strings.isEmpty()) {
+                continue;
+            }
+
+            String value = strings.size() == 1 ? strings.get(0) : String.join(",", strings);
+            response.header(key, value);
+        }
+
+        return parameters;
+    }
 
 
 
