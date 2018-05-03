@@ -7,6 +7,7 @@ import com.blade.mvc.http.Request;
 import com.blade.mvc.http.Response;
 import com.google.common.base.Preconditions;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
@@ -95,9 +96,43 @@ public class IndexController {
         return "UTF-8-demo";
     }
 
-    private Map<String, Object> getMap(String[] keys) {
-        String[] _keys = {"url", "args", "form", "data", "origin", "headers", "files", "json", "method"};
+    @GetRoute("gzip")
+    public void gzip(Response response) {
+        Map<String, Object> extras = new HashMap<>();
+        extras.put("gzipped", true);
+        // todo webhook not support to get result from route
+//        return getMap(new String[]{"headers", "origin", "method"}, extras);
+        response.text("Not implemented");
+    }
 
+    @GetRoute("deflate")
+    public void deflate(Response response) {
+        response.text("Not implemented");
+    }
+
+
+    @GetRoute("brotli")
+    public void brotli(Response response) {
+        response.text("Not implemented");
+    }
+
+    @GetRoute("status/:status")
+    public void status(@PathParam(defaultValue = "200") int status ,Response response) {
+        response.status(status);
+    }
+
+
+
+
+
+
+
+    private Map<String, Object> getMap(String[] keys) {
+        return getMap(keys, null);
+    }
+
+    private Map<String, Object> getMap(String[] keys, @Nullable Map<String, Object> extras) {
+        String[] _keys = {"url", "args", "form", "data", "origin", "headers", "files", "json", "method"};
 
         Preconditions.checkArgument(Arrays.asList(_keys).containsAll(Arrays.asList(keys)));
 
@@ -116,6 +151,10 @@ public class IndexController {
         Map<String, Object> outMap = new HashMap<>();
         for (String key : keys) {
             outMap.put(key, _map.get(key));
+        }
+
+        if (extras != null && extras.size() > 0) {
+            outMap.putAll(extras);
         }
 
         return outMap;
