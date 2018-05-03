@@ -3,7 +3,6 @@ package vip.kassadin.httpbin.blade;
 import com.blade.Blade;
 import com.blade.event.BeanProcessor;
 import com.blade.ioc.annotation.Bean;
-import com.blade.mvc.view.template.FreeMarkerTemplateEngine;
 
 /**
  * Created by Administrator on 2017/12/24.
