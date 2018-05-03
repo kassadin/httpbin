@@ -55,11 +55,11 @@
         <li><a href="{{ url_for('random_bytes', n=1024) }}"><code>/bytes/:n</code></a> Generates <em>n</em> random bytes of binary data, accepts optional <em>seed</em> integer parameter.</li>
         <li><a href="{{ url_for('stream_random_bytes', n=1024) }}"><code>/stream-bytes/:n</code></a> Streams <em>n</em> random bytes of binary data in chunked encoding, accepts optional <em>seed</em> and <em>chunk_size</em> integer parameters.</li>
         <li><a href="{{ url_for('links', n=10) }}"><code>/links/:n</code></a> Returns page containing <em>n</em> HTML links.</li>
-        <li><a href="{{ url_for('image') }}"><code>/image</code></a> Returns page containing an image based on sent Accept header.</li>
-        <li><a href="{{ url_for('image_png') }}"><code>/image/png</code></a> Returns a PNG image.</li>
-        <li><a href="{{ url_for('image_jpeg') }}"><code>/image/jpeg</code></a> Returns a JPEG image.</li>
-        <li><a href="{{ url_for('image_webp') }}"><code>/image/webp</code></a> Returns a WEBP image.</li>
-        <li><a href="{{ url_for('image_svg') }}"><code>/image/svg</code></a> Returns a SVG image.</li>
+        <li><a href="/image"><code>/image</code></a> Returns page containing an image based on sent Accept header.</li>
+        <li><a href="/image_png"><code>/image/png</code></a> Returns a PNG image.</li>
+        <li><a href="/image_jpeg"><code>/image/jpeg</code></a> Returns a JPEG image.</li>
+        <li><a href="/image_webp"><code>/image/webp</code></a> Returns a WEBP image.</li>
+        <li><a href="/image_svg"><code>/image/svg</code></a> Returns a SVG image.</li>
         <li><a href="{{ url_for('view_forms_post') }}" ><code>/forms/post</code></a> HTML form that submits to <em>/post</em></li>
         <li><a href="/xml" ><code>/xml</code></a> Returns some XML</li>
     </ul>
