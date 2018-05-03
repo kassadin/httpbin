@@ -4,6 +4,7 @@ import com.blade.mvc.WebContext;
 import com.blade.mvc.annotation.*;
 import com.blade.mvc.http.HttpMethod;
 import com.blade.mvc.http.Request;
+import com.blade.mvc.http.Response;
 import com.google.common.base.Preconditions;
 
 import java.util.*;
@@ -80,6 +81,13 @@ public class IndexController {
     public Map<String, Object> delete(Request req, Map<String, Object> resp) {
         resp.put("headers", req.headers());
         return resp;
+    }
+
+    @GetRoute("decode_base64/:value")
+    public void  decodeBase64(@PathParam String value, Response response) {
+        Objects.requireNonNull(value);
+        String origin = new String(Base64.getDecoder().decode(value));
+        response.text(origin);
     }
 
     private Map<String, Object> getMap(String[] keys) {
